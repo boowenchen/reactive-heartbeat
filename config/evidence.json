@@ -1,0 +1,73 @@
+{
+  "status": "live-loop-verified",
+  "origins": [
+    "base",
+    "sepolia"
+  ],
+  "addresses": {
+    "REACTIVE_FUND_WEI": "700000000000000000",
+    "CALLBACK_FUND_WEI": "1000000000000000",
+    "BENEFICIARY": "0xa49e54E36f6B8130d0DF4105f3e594E2c80bBB86",
+    "WARN_SECONDS": "120",
+    "RELEASE_SECONDS": "240",
+    "GRACE_SECONDS": "45",
+    "PRINCIPAL_WEI": "100000000000000000000",
+    "BASE_PULSE": "0x2327e84c823df7c0f4f1320401de104a4b6b1f61",
+    "SEPOLIA_PULSE": "0x8ad21bdc4d3c5ce687ce47be22d63a9bb7523912",
+    "REACTIVE": "0x2327e84c823df7c0f4f1320401de104a4b6b1f61",
+    "TOKEN": "0x5d927759b821c6a1c72a65b91967de0e4d14bb65",
+    "VAULT": "0x7509221859d2984ed941f671b616c6a77d07c95b"
+  },
+  "rows": [
+    {
+      "stage": "Heartbeat",
+      "originChain": "base",
+      "originTx": "0x4d92ef8f4ed0516d1fc87c90be341909e50cff99d76e04737233af5513bf3307",
+      "reactiveTx": "0x5cac9f9a165f68fb203f80b220cdd6d2d534dd22ad81401551365e6f9eb1dafd",
+      "callbackTx": "0x8ec80356baeb297f7fdb67ed3c18fd9f9dcec11ddd62f5104feddb08d814f418",
+      "version": 1,
+      "callbackApplicationEvent": "0x32743332e234f6fd3a3a771ae6aa0d8646076870cc1690869f61b83b812553f9"
+    },
+    {
+      "stage": "Heartbeat",
+      "originChain": "sepolia",
+      "originTx": "0xf86dd97c38d5c09dc53c6bd4ac93bb5bbbb1dcdb3c5d393249f5c7b778e5a440",
+      "reactiveTx": "0x5ee5789a75a4bc636bce3088a4cf400d4f836c488e490d2761aa99ea29f2e839",
+      "callbackTx": "0x63c530f57449e0e1eb1e045b66e2715b0376535e20abdc3131607d7ed8b4ecf9",
+      "version": 2,
+      "callbackApplicationEvent": "0x32743332e234f6fd3a3a771ae6aa0d8646076870cc1690869f61b83b812553f9"
+    },
+    {
+      "stage": "Heartbeat",
+      "originChain": "base",
+      "originTx": "0x1a3a3ced5e990a6016c59c6f69ed0fdb6286d31a00e29cb0ef0231d487b01aa9",
+      "reactiveTx": "0xb7fc598e90f05589c4cbe91a9d8b4dcbcb9ece32a9525b2f5fba86b4391a0225",
+      "callbackTx": "0x77c6b1e68f94949af09f5ae65da416fe707280de43eb727e63934ae1522bdcb9",
+      "version": 3,
+      "callbackApplicationEvent": "0x32743332e234f6fd3a3a771ae6aa0d8646076870cc1690869f61b83b812553f9"
+    },
+    {
+      "stage": "Warning",
+      "originChain": "lasna",
+      "originTx": "0xb1553c64a6ec72de45cb2318c13bf64cd1a12e47ed80591db9ced39f4ef748ae",
+      "reactiveTx": "0x46deeecf12c30774ac22f8e9e9ae531aea39a39799e96d5b51b1396515be5fba",
+      "callbackTx": "0xae8326a116e07700d1d5edcc8cb4b5fbafcf3ffb9c2416bb5ef4f18f9e7c9b8f",
+      "version": 3,
+      "callbackApplicationEvent": "0x193228fa77033256f8bd31b2de00719f82ed68de699c36850717c8d74d40562b"
+    },
+    {
+      "stage": "Released",
+      "originChain": "lasna",
+      "originTx": "0x293412f2440c52b5df9a6395e8bc469fa33ad7c6d6f8369e67182b0802f92b0a",
+      "reactiveTx": "0x80801bb954c09bb52c3665fc2b9bb434a4789c2add07d6b97a674cc967cb33dc",
+      "callbackTx": "0xae95a2c790f834bd83887f329718d540ddc3d7d5cb09232068f5eb57b6b061b9",
+      "version": 3,
+      "callbackApplicationEvent": "0x3bfce8de0db7450cc169b94323c210e69a36c6a4a58c9f5d96bec4973adce392"
+    }
+  ],
+  "stateEvidence": "../../evidence/heartbeat-loop.json",
+  "rawEvidence": "../../evidence/heartbeat-collected.json",
+  "principal": "100 HBA",
+  "beneficiary": "0xa49e54E36f6B8130d0DF4105f3e594E2c80bBB86",
+  "releaseAckTx": "0x21aee27181ff8cbfbe097f5a73014ebfb11e8d386fb67f6307be725a48ccc1d4"
+}

@@ -1,0 +1,312 @@
+{
+  "policy": {
+    "warnSeconds": 120,
+    "releaseSeconds": 240,
+    "graceSeconds": 45
+  },
+  "beneficiary": "0xa49e54E36f6B8130d0DF4105f3e594E2c80bBB86",
+  "pings": [
+    {
+      "chain": "base",
+      "tx": "0x4d92ef8f4ed0516d1fc87c90be341909e50cff99d76e04737233af5513bf3307",
+      "block": "0x353b1b1"
+    },
+    {
+      "chain": "sepolia",
+      "tx": "0xf86dd97c38d5c09dc53c6bd4ac93bb5bbbb1dcdb3c5d393249f5c7b778e5a440",
+      "block": "0xb86bb0"
+    },
+    {
+      "chain": "base",
+      "tx": "0x1a3a3ced5e990a6016c59c6f69ed0fdb6286d31a00e29cb0ef0231d487b01aa9",
+      "block": "0x353b2d7"
+    }
+  ],
+  "observations": [
+    {
+      "at": 1794085193.4886506,
+      "baseBlock": "0x353b1b3",
+      "lasnaBlock": "0x76cf52",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "1",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "1",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "550659300000000000"
+    },
+    {
+      "at": 1794085224.432373,
+      "baseBlock": "0x353b24e",
+      "lasnaBlock": "0x76cf70",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "2",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "2",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "494557800000000000"
+    },
+    {
+      "at": 1794085252.2651737,
+      "baseBlock": "0x353b2d9",
+      "lasnaBlock": "0x76cf89",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "440120600000000000"
+    },
+    {
+      "at": 1794085270.5053184,
+      "baseBlock": "0x353b334",
+      "lasnaBlock": "0x76cf9b",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "427754700000000000"
+    },
+    {
+      "at": 1794085296.0497987,
+      "baseBlock": "0x353b3b4",
+      "lasnaBlock": "0x76cfb3",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "390657000000000000"
+    },
+    {
+      "at": 1794085321.7904239,
+      "baseBlock": "0x353b434",
+      "lasnaBlock": "0x76cfcc",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "365925200000000000"
+    },
+    {
+      "at": 1794085347.3903818,
+      "baseBlock": "0x353b4b4",
+      "lasnaBlock": "0x76cfe4",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "0",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "328827500000000000"
+    },
+    {
+      "at": 1794085372.9123118,
+      "baseBlock": "0x353b534",
+      "lasnaBlock": "0x76cffc",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "1794085374 [1.794e9]",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "300310100000000000"
+    },
+    {
+      "at": 1794085398.3135946,
+      "baseBlock": "0x353b5b3",
+      "lasnaBlock": "0x76d014",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "1794085374 [1.794e9]",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "457534000000000000"
+    },
+    {
+      "at": 1794085423.8953657,
+      "baseBlock": "0x353b633",
+      "lasnaBlock": "0x76d02c",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "1794085374 [1.794e9]",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "429016600000000000"
+    },
+    {
+      "at": 1794085449.4270172,
+      "baseBlock": "0x353b6b3",
+      "lasnaBlock": "0x76d045",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "1794085374 [1.794e9]",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "400499200000000000"
+    },
+    {
+      "at": 1794085475.155883,
+      "baseBlock": "0x353b733",
+      "lasnaBlock": "0x76d05e",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "1794085374 [1.794e9]",
+        "released": "false",
+        "active": "true"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "true",
+        "cronEnabled": "true"
+      },
+      "reactiveBalanceWei": "357723100000000000"
+    },
+    {
+      "at": 1794085500.880876,
+      "baseBlock": "0x353b7b4",
+      "lasnaBlock": "0x76d076",
+      "vault": {
+        "epoch": "1",
+        "activityVersion": "3",
+        "warnedAt": "1794085374 [1.794e9]",
+        "released": "true",
+        "active": "false"
+      },
+      "reactive": {
+        "epoch": "1",
+        "version": "3",
+        "active": "false",
+        "cronEnabled": "false"
+      },
+      "reactiveBalanceWei": "329413600000000000"
+    }
+  ],
+  "initial": {
+    "at": 1794085161.761288,
+    "baseBlock": "0x353b114",
+    "lasnaBlock": "0x76cf34",
+    "vault": {
+      "epoch": "1",
+      "activityVersion": "0",
+      "warnedAt": "0",
+      "released": "false",
+      "active": "true"
+    },
+    "reactive": {
+      "epoch": "1",
+      "version": "0",
+      "active": "true",
+      "cronEnabled": "true"
+    },
+    "reactiveBalanceWei": "608516500000000000"
+  },
+  "final": {
+    "at": 1794085521.1731153,
+    "baseBlock": "0x353b819",
+    "lasnaBlock": "0x76d089",
+    "vault": {
+      "epoch": "1",
+      "activityVersion": "3",
+      "warnedAt": "1794085374 [1.794e9]",
+      "released": "true",
+      "active": "false"
+    },
+    "reactive": {
+      "epoch": "1",
+      "version": "3",
+      "active": "false",
+      "cronEnabled": "false"
+    },
+    "reactiveBalanceWei": "329413600000000000"
+  }
+}

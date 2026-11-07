@@ -1,0 +1,67 @@
+Compiling 1 files with Solc 0.8.30
+Solc 0.8.30 finished in 2.81s
+Compiler run successful!
+warning[calls-loop]: external call inside a loop
+   ╭▸ heartbeat/src/HeartbeatReactive.sol:56:13
+   │
+56 │             SYSTEM.subscribe(chains[i], sources[i], PING, uint256(uint160(owner_)), REACTIVE_IGNORE, REACTIVE_IGNORE);
+   │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/calls-loop
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+   ╭▸ heartbeat/src/Vault.sol:99:17
+   │
+99 │         require(block.timestamp >= warnedAt + grace && block.timestamp >= resetAt + releaseAfter, "early");
+   │                 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+   ╭▸ heartbeat/src/Vault.sol:99:56
+   │
+99 │         require(block.timestamp >= warnedAt + grace && block.timestamp >= resetAt + releaseAfter, "early");
+   │                                                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[require-revert-in-loop]: `require` or `revert` inside a loop
+   ╭▸ heartbeat/src/HeartbeatReactive.sol:54:13
+   │
+54 │             require(chains[i] != 0 && sources[i] != address(0) && pulses[chains[i]] == address(0), "source");
+   │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   │
+   ╰ help: https://getfoundry.sh/forge/linting/require-revert-in-loop
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ heartbeat/src/Vault.sol:104:9
+    │
+104 │         emit Released(e, beneficiary, amount);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ heartbeat/src/HeartbeatReactive.sol:130:13
+    │
+130 │         if (block.timestamp >= latestActivity + warnAfter) {
+    │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[block-timestamp]: usage of `block.timestamp` in a comparison may be manipulated by validators
+    ╭▸ heartbeat/src/HeartbeatReactive.sol:133:13
+    │
+133 │         if (block.timestamp >= latestActivity + releaseAfter) {
+    │             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/block-timestamp
+
+warning[reentrancy-events]: event emitted after an external call; reentrancy can reorder or fabricate logs that off-chain consumers rely on
+    ╭▸ heartbeat/src/HeartbeatReactive.sol:142:9
+    │
+142 │         emit Requested(epoch, version, action);
+    │         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    │
+    ╰ help: https://getfoundry.sh/forge/linting/reentrancy-events
+

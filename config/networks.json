@@ -1,0 +1,31 @@
+{
+  "base": {
+    "chainId": 84532,
+    "rpc": "https://sepolia.base.org",
+    "callbackProxy": "0x476F44b11F5C942c58f4c8E3d0300E5710743585",
+    "explorer": "https://sepolia.basescan.org"
+  },
+  "unichain": {
+    "chainId": 1301,
+    "rpc": "https://sepolia.unichain.org",
+    "callbackProxy": "0x775c9B990ADe401060B78D0e98684eEf8d2466C1",
+    "explorer": "https://sepolia.uniscan.xyz"
+  },
+  "sepolia": {
+    "chainId": 11155111,
+    "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+    "callbackProxy": "0xAa14d9Cd0f788Ca23d11805986C1d8bd035D23b4",
+    "explorer": "https://sepolia.etherscan.io"
+  },
+  "lasna": {
+    "chainId": 5318007,
+    "rpc": "https://lasna-rpc.rnk.dev/",
+    "callbackProxy": "0x8888888888888888888888888888888888888888",
+    "explorer": "https://lasna.reactscan.net"
+  },
+  "cron": {
+    "emitter": "0x0000000000000000000000000000000000fffFfF",
+    "topic": 1933368844271349632695377894612961600697035036322701664378018234768673977991,
+    "event": "Cron10(uint256)"
+  }
+}

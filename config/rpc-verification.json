@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-07T19:48:00.858628+00:00",
+  "method": "read-only JSON-RPC; code presence is not implementation attestation",
+  "results": [
+    {
+      "network": "base",
+      "rpc": "https://sepolia.base.org",
+      "expectedChainId": 84532,
+      "callbackProxy": "0x476F44b11F5C942c58f4c8E3d0300E5710743585",
+      "observedChainId": 84532,
+      "proxyHasCode": true,
+      "matches": true
+    },
+    {
+      "network": "unichain",
+      "rpc": "https://sepolia.unichain.org",
+      "expectedChainId": 1301,
+      "callbackProxy": "0x775c9B990ADe401060B78D0e98684eEf8d2466C1",
+      "observedChainId": 1301,
+      "proxyHasCode": true,
+      "matches": true
+    },
+    {
+      "network": "sepolia",
+      "rpc": "https://rpc.sepolia.org",
+      "expectedChainId": 11155111,
+      "callbackProxy": "0xAa14d9Cd0f788Ca23d11805986C1d8bd035D23b4",
+      "status": "unverified",
+      "errorType": "TimeoutError"
+    },
+    {
+      "network": "lasna",
+      "rpc": "https://lasna-rpc.rnk.dev/",
+      "expectedChainId": 5318007,
+      "callbackProxy": "0x8888888888888888888888888888888888888888",
+      "observedChainId": 5318007,
+      "proxyHasCode": true,
+      "matches": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+lib/
+out/
+cache/
+broadcast/
+node_modules/
+.npm-cache/
+.toolchain/
+.env
+.env.*
+!.env.example
+config/deployed.json
+measurements/*.json
+measurements/*.html
+!measurements/README.md

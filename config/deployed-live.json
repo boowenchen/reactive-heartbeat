@@ -1,0 +1,24 @@
+{
+  "env": {
+    "REACTIVE_FUND_WEI": "700000000000000000",
+    "CALLBACK_FUND_WEI": "1000000000000000",
+    "BENEFICIARY": "0xa49e54E36f6B8130d0DF4105f3e594E2c80bBB86",
+    "WARN_SECONDS": "120",
+    "RELEASE_SECONDS": "240",
+    "GRACE_SECONDS": "45",
+    "PRINCIPAL_WEI": "100000000000000000000",
+    "BASE_PULSE": "0x2327e84c823df7c0f4f1320401de104a4b6b1f61",
+    "SEPOLIA_PULSE": "0x8ad21bdc4d3c5ce687ce47be22d63a9bb7523912",
+    "REACTIVE": "0x2327e84c823df7c0f4f1320401de104a4b6b1f61",
+    "TOKEN": "0x5d927759b821c6a1c72a65b91967de0e4d14bb65",
+    "VAULT": "0x7509221859d2984ed941f671b616c6a77d07c95b"
+  },
+  "stages": [
+    "pulse-base",
+    "pulse-sepolia",
+    "reactive-lasna",
+    "vault-base",
+    "link-lasna",
+    "activate-base"
+  ]
+}
