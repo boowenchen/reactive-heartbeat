@@ -2,6 +2,12 @@
 
 **Status: executed on testnet on 2026-11-07.** This runbook was written before deployment and is kept as the procedure. Actual addresses, transactions and results are in [README.md](README.md).
 
+**v2 (2026-11-08)** uses the same steps with two optional variables for the `reactive` step:
+`TOKEN_CHAINS` and `TRACKED_TOKENS` (comma-separated, parallel lists of chain ids and ERC20
+addresses whose transfers out of the owner count as activity) and `CRON_TOPIC` (defaults to
+Cron10 from `config/networks.json`; v2 used Cron100,
+`0xb49937fb8970e19fd46d48f7e3fb00d659deac0347f79cd7cb542f0fc1503c70`).
+
 All commands below were prepared for a funded testnet session. No account or wallet is
 created by this project. Use a dedicated project wallet; export `PRIVATE_KEY` in the
 process environment through your secret manager. Never paste it into command arguments,

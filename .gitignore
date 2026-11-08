@@ -12,3 +12,4 @@ config/deployed.json
 measurements/*.json
 measurements/*.html
 !measurements/README.md
+notifier/.state/

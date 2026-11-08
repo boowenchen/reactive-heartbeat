@@ -1,0 +1,78 @@
+{
+  "title": "Heartbeat",
+  "deployment": "v2 testnet deployment (Base Sepolia + Ethereum Sepolia \u2192 Lasna)",
+  "vault": {
+    "chain": "base",
+    "address": "0xee32f101c3112220c6662585904622119fe60aca",
+    "deployBlock": 56140977
+  },
+  "reactive": {
+    "chain": "lasna",
+    "address": "0xff70c3f9bce166fe0406d1cb74ed6c4b7fd292b6",
+    "deployBlock": 7847572
+  },
+  "chains": {
+    "base": {
+      "chainId": 84532,
+      "name": "Base Sepolia",
+      "rpc": "https://sepolia.base.org",
+      "explorer": "https://base-sepolia.blockscout.com",
+      "explorerApi": "https://base-sepolia.blockscout.com/api",
+      "nativeCurrency": {
+        "name": "Ether",
+        "symbol": "ETH",
+        "decimals": 18
+      },
+      "pulse": {
+        "address": "0x2327e84c823df7c0f4f1320401de104a4b6b1f61",
+        "deployBlock": 56140977
+      },
+      "trackedTokens": [
+        {
+          "address": "0x4200000000000000000000000000000000000006",
+          "symbol": "WETH",
+          "deployBlock": 56140977
+        }
+      ],
+      "logRpc": "https://base-sepolia-rpc.publicnode.com",
+      "logChunk": 50000
+    },
+    "sepolia": {
+      "chainId": 11155111,
+      "name": "Ethereum Sepolia",
+      "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+      "explorer": "https://eth-sepolia.blockscout.com",
+      "explorerApi": "https://eth-sepolia.blockscout.com/api",
+      "nativeCurrency": {
+        "name": "Sepolia Ether",
+        "symbol": "ETH",
+        "decimals": 18
+      },
+      "pulse": {
+        "address": "0x8ad21bdc4d3c5ce687ce47be22d63a9bb7523912",
+        "deployBlock": 12091297
+      },
+      "trackedTokens": [
+        {
+          "address": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+          "symbol": "WETH",
+          "deployBlock": 12091297
+        }
+      ],
+      "logRpc": "https://ethereum-sepolia-rpc.publicnode.com",
+      "logChunk": 2000000
+    },
+    "lasna": {
+      "chainId": 5318007,
+      "name": "Reactive Lasna",
+      "rpc": "https://lasna-rpc.rnk.dev/",
+      "explorer": "https://lasna.reactscan.net",
+      "nativeCurrency": {
+        "name": "Lasna REACT",
+        "symbol": "lREACT",
+        "decimals": 18
+      },
+      "maxLogRange": 30000
+    }
+  }
+}

@@ -39,13 +39,18 @@ contract Deploy is Script {
                 chains[1] = vm.parseJsonUint(cfg, ".sepolia.chainId");
                 sources[0] = vm.envAddress("BASE_PULSE");
                 sources[1] = vm.envAddress("SEPOLIA_PULSE");
+                // Allowlisted tokens whose Transfer(from = owner) counts as activity, as parallel lists.
+                uint256[] memory tokenChains = vm.envOr("TOKEN_CHAINS", ",", new uint256[](0));
+                address[] memory tokens = vm.envOr("TRACKED_TOKENS", ",", new address[](0));
                 new HeartbeatReactive{value: vm.envUint("REACTIVE_FUND_WEI")}(
                     owner,
                     chains,
                     sources,
+                    tokenChains,
+                    tokens,
                     base,
                     vm.parseJsonAddress(cfg, ".cron.emitter"),
-                    vm.parseJsonUint(cfg, ".cron.topic"),
+                    vm.envOr("CRON_TOPIC", vm.parseJsonUint(cfg, ".cron.topic")),
                     500000
                 );
             } else {

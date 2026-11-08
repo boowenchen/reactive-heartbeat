@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Heartbeat status</title>
+  <meta name="description" content="Live status of a Heartbeat vault: last activity, countdown to warning and release, and owner controls.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header class="top">
+      <div>
+        <h1>Heartbeat</h1>
+        <p class="sub" id="deployment">Loading&hellip;</p>
+      </div>
+      <span class="pill" id="net-pill" title="Network the vault lives on"></span>
+    </header>
+
+    <section class="card state" id="state-card" data-kind="loading" aria-live="polite">
+      <div class="state-label" id="state-label">Loading&hellip;</div>
+      <div class="state-count" id="state-count"></div>
+      <p class="state-text" id="state-text"></p>
+      <div class="track" id="track" hidden>
+        <div class="track-fill" id="track-fill"></div>
+        <div class="track-mark" id="track-warn"><span>warning</span></div>
+        <div class="track-mark end" id="track-release"><span>release</span></div>
+      </div>
+      <p class="muted small" id="state-meta"></p>
+    </section>
+
+    <section class="card">
+      <h2>Vault</h2>
+      <dl class="grid" id="facts"></dl>
+    </section>
+
+    <section class="card">
+      <h2>What keeps it alive</h2>
+      <p class="muted">Only activity from the owner address counts. Anything else is ignored.</p>
+      <ul class="sources" id="sources"></ul>
+      <p class="muted small" id="watcher"></p>
+    </section>
+
+    <section class="card" id="actions">
+      <h2>Owner controls</h2>
+      <div class="wallet">
+        <button id="connect" class="primary">Connect wallet</button>
+        <span id="who" class="muted small"></span>
+      </div>
+      <p class="notice" id="owner-note" hidden></p>
+
+      <div class="action">
+        <h3>I&rsquo;m alive</h3>
+        <p class="muted small">Sends a small transaction to a Pulse contract (it only records an event). It resets the countdown only when it comes from the owner address; from any other address it changes nothing. The vault learns about it through the Reactive network, so allow a short delay.</p>
+        <div class="row">
+          <select id="ping-chain" aria-label="Chain to ping on"></select>
+          <button id="ping" disabled>Send ping</button>
+        </div>
+        <p class="muted small" id="token-note"></p>
+      </div>
+
+      <div class="action">
+        <h3>Cancel</h3>
+        <p class="muted small">Turns the release off immediately. Nothing is sent to the beneficiary while it is cancelled. Owner only, on the vault&rsquo;s chain.</p>
+        <button id="cancel" class="danger" disabled>Cancel release</button>
+      </div>
+
+      <div class="action">
+        <h3>Reconfigure</h3>
+        <p class="muted small">Sets a new beneficiary and timing, turns the vault on and restarts the countdown from now. Owner only. Not possible after a release.</p>
+        <form id="cfg" autocomplete="off">
+          <label>Beneficiary address
+            <input id="cfg-ben" type="text" spellcheck="false" placeholder="0x&hellip;" required>
+          </label>
+          <div class="trio">
+            <label>Warn after
+              <span class="inline"><input id="cfg-warn" type="number" min="1" step="1" required><select id="cfg-warn-u"></select></span>
+            </label>
+            <label>Release after
+              <span class="inline"><input id="cfg-rel" type="number" min="1" step="1" required><select id="cfg-rel-u"></select></span>
+            </label>
+            <label>Grace after warning
+              <span class="inline"><input id="cfg-grace" type="number" min="1" step="1" required><select id="cfg-grace-u"></select></span>
+            </label>
+          </div>
+          <p class="muted small">Warn after = silence before a warning. Release after = silence before tokens can move. Grace = minimum time between the warning and the release. Release after must be longer than warn after.</p>
+          <button id="cfg-submit" type="submit" disabled>Save new settings</button>
+        </form>
+      </div>
+
+      <div class="action" id="recover-box" hidden>
+        <h3>Take the tokens back</h3>
+        <p class="muted small">The vault is cancelled and still holds tokens. This sends all of them to the owner address.</p>
+        <button id="recover" disabled>Recover tokens</button>
+      </div>
+
+      <p class="tx" id="tx-status" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <div class="head-row">
+        <h2>Recent events</h2>
+        <button id="reload" class="ghost small">Refresh</button>
+      </div>
+      <ol class="timeline" id="timeline"><li class="muted">Loading&hellip;</li></ol>
+      <p class="muted small" id="timeline-note"></p>
+    </section>
+
+    <footer class="muted small">
+      <p>Testnet demo using worthless test tokens. A release is only triggered by silence from the owner address as seen by the contracts above. It does not prove anything about the person. Network delivery takes time, so every time on this page can lag by a short while.</p>
+      <p id="links"></p>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"
+          integrity="sha384-6Zl0Pc8zjSz8KvmNeXRvUQgY4ryFb+BwDvKCmLYcBME0joAaru491tQgi9B7zsMM"
+          crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+</html>

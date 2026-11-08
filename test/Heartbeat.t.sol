@@ -37,6 +37,12 @@ contract HeartbeatTest is Test {
     Vault vault;
     HeartbeatReactive rc;
     MockSystem system;
+    address constant WETH = address(0x4200);
+
+    function noTokens() internal pure returns (uint256[] memory c, address[] memory t) {
+        c = new uint256[](0);
+        t = new address[](0);
+    }
 
     function setUp() public {
         vm.warp(1000);
@@ -49,7 +55,11 @@ contract HeartbeatTest is Test {
             chains[i] = i + 10;
             sources[i] = address(new Pulse());
         }
-        rc = new HeartbeatReactive(address(this), chains, sources, 10, CRON, 123, 500000);
+        uint256[] memory tokenChains = new uint256[](1);
+        address[] memory tokens = new address[](1);
+        tokenChains[0] = 11;
+        tokens[0] = WETH;
+        rc = new HeartbeatReactive(address(this), chains, sources, tokenChains, tokens, 10, CRON, 123, 500000);
         token = new TestToken("Test", "T", 100 ether, address(this));
         vault = new Vault(PROXY, address(rc), address(this), token, BENEFICIARY, 60, 120, 30);
         token.transfer(address(vault), 100 ether);
@@ -72,13 +82,14 @@ contract HeartbeatTest is Test {
         address[] memory sources = new address[](2);
         chains[0] = 84532; chains[1] = 11155111;
         sources[0] = address(new Pulse()); sources[1] = address(new Pulse());
-        HeartbeatReactive two = new HeartbeatReactive(address(this), chains, sources, 84532, CRON, 123, 500000);
+        (uint256[] memory tc, address[] memory tk) = noTokens();
+        HeartbeatReactive two = new HeartbeatReactive(address(this), chains, sources, tc, tk, 84532, CRON, 123, 500000);
         assertEq(two.pulses(84532), sources[0]);
         assertEq(two.pulses(11155111), sources[1]);
         assertEq(two.pulses(1301), address(0));
         sources[1] = address(0);
         vm.expectRevert("source");
-        new HeartbeatReactive(address(this), chains, sources, 84532, CRON, 123, 500000);
+        new HeartbeatReactive(address(this), chains, sources, tc, tk, 84532, CRON, 123, 500000);
     }
 
     function tick() internal {
@@ -96,6 +107,19 @@ contract HeartbeatTest is Test {
         l.contractAddress = rc.pulses(chain);
         l.topic0 = rc.PING();
         l.topic1 = uint256(uint160(address(this)));
+        l.txHash = txid;
+        vm.prank(SYSTEM);
+        rc.react(l);
+    }
+
+    function transferLog(uint256 chain, address tokenAddr, address from, address to, uint256 txid) internal {
+        IReactive.LogRecord memory l;
+        l.chainId = chain;
+        l.contractAddress = tokenAddr;
+        l.topic0 = rc.TRANSFER();
+        l.topic1 = uint256(uint160(from));
+        l.topic2 = uint256(uint160(to));
+        l.data = abi.encode(uint256(1 ether));
         l.txHash = txid;
         vm.prank(SYSTEM);
         rc.react(l);
@@ -135,13 +159,18 @@ contract HeartbeatTest is Test {
         pulse(12, 12);
         assertEq(rc.version(), 3);
         uint256 count = system.count();
-        vm.warp(block.timestamp + 59);
+        uint256 t0 = rc.latestActivity();
+        vm.warp(t0 + 59);
         tick();
         assertEq(system.count(), count);
-        vm.warp(block.timestamp + 1);
+        vm.warp(t0 + 60);
         tick();
         assertEq(system.count(), count + 1);
-        vm.warp(block.timestamp + 60);
+        // The warning for this activity version is requested once, not on every tick.
+        vm.warp(t0 + 90);
+        tick();
+        assertEq(system.count(), count + 1);
+        vm.warp(t0 + 120);
         tick();
         assertEq(system.count(), count + 3);
     }
@@ -202,6 +231,115 @@ contract HeartbeatTest is Test {
         vm.warp(10000);
         tick();
         assertEq(system.count(), 0);
+    }
+
+    function testTrackedTokenTransferFromOwnerCountsAsActivity() public {
+        uint256 count = system.count();
+        vm.warp(block.timestamp + 10);
+        transferLog(11, WETH, address(this), address(0xCAFE), 77);
+        assertEq(rc.version(), 1);
+        assertEq(rc.lastActivity(11), block.timestamp);
+        assertEq(system.count(), count + 1);
+        // Same log replayed is a no-op.
+        transferLog(11, WETH, address(this), address(0xCAFE), 77);
+        assertEq(rc.version(), 1);
+    }
+
+    function testUntrackedOrIncomingTransfersAreIgnored() public {
+        // Untracked token contract, even naming the owner as sender.
+        transferLog(11, address(0xBAD), address(this), address(0xCAFE), 1);
+        // Tracked token on a chain where it is not tracked.
+        transferLog(10, WETH, address(this), address(0xCAFE), 2);
+        // Incoming transfer: anyone can send tokens to the owner.
+        transferLog(11, WETH, address(0xCAFE), address(this), 3);
+        // A Transfer-shaped log from the Pulse contract does not count as a ping.
+        IReactive.LogRecord memory l;
+        l.chainId = 10;
+        l.contractAddress = rc.pulses(10);
+        l.topic0 = rc.TRANSFER();
+        l.topic1 = uint256(uint160(address(this)));
+        vm.prank(SYSTEM);
+        rc.react(l);
+        assertEq(rc.version(), 0);
+    }
+
+    function testTokenConfigValidation() public {
+        uint256[] memory chains = new uint256[](2);
+        address[] memory sources = new address[](2);
+        chains[0] = 1; chains[1] = 2;
+        sources[0] = address(new Pulse()); sources[1] = address(new Pulse());
+        uint256[] memory tc = new uint256[](2);
+        address[] memory tk = new address[](2);
+        tc[0] = 1; tc[1] = 1; tk[0] = WETH; tk[1] = WETH;
+        vm.expectRevert("token");
+        new HeartbeatReactive(address(this), chains, sources, tc, tk, 1, CRON, 123, 500000);
+        uint256[] memory tc7 = new uint256[](7);
+        address[] memory tk7 = new address[](7);
+        vm.expectRevert("config");
+        new HeartbeatReactive(address(this), chains, sources, tc7, tk7, 1, CRON, 123, 500000);
+    }
+
+    function testCancelStopsCronAndReconfigureRestartsIt() public {
+        uint256 subs = system.subscriptions();
+        vault.cancel();
+        config();
+        assertFalse(rc.active());
+        assertFalse(rc.cronEnabled());
+        assertEq(system.subscriptions(), subs - 1);
+        vm.warp(block.timestamp + 10000);
+        tick();
+        assertEq(system.count(), 0);
+        vault.configure(BENEFICIARY, 60, 120, 30);
+        config();
+        assertTrue(rc.active());
+        assertTrue(rc.cronEnabled());
+        assertEq(system.subscriptions(), subs);
+        vm.warp(block.timestamp + 60);
+        tick();
+        assertEq(system.count(), 1);
+    }
+
+    function testStatusAndDeadlines() public {
+        (bool a, bool r, uint256 e, uint256 last, uint256 warned, uint256 warnAt, uint256 releaseAt, address b, uint256 bal)
+        = vault.status();
+        assertTrue(a);
+        assertFalse(r);
+        assertEq(e, 1);
+        assertEq(last, 1000);
+        assertEq(warned, 0);
+        assertEq(warnAt, 1060);
+        assertEq(releaseAt, 1120);
+        assertEq(b, BENEFICIARY);
+        assertEq(bal, 100 ether);
+        // A late warning pushes release to warning + grace.
+        vm.warp(1100);
+        warn();
+        (warnAt, releaseAt) = vault.deadlines();
+        assertEq(releaseAt, 1130);
+        vault.cancel();
+        (warnAt, releaseAt) = vault.deadlines();
+        assertEq(warnAt + releaseAt, 0);
+    }
+
+    function testOwnerCanWithdrawUnusedFundsOnly() public {
+        vm.deal(address(rc), 1 ether);
+        vm.deal(address(vault), 1 ether);
+        vm.expectRevert("active");
+        rc.withdraw(payable(address(0xD00D)), 1);
+        vm.expectRevert("active");
+        vault.withdrawGasFunds(payable(address(0xD00D)), 1);
+        vault.cancel();
+        config();
+        rc.withdraw(payable(address(0xD00D)), 0.4 ether);
+        vault.withdrawGasFunds(payable(address(0xD00D)), 0.5 ether);
+        assertEq(address(0xD00D).balance, 0.9 ether);
+        assertEq(token.balanceOf(address(vault)), 100 ether);
+        vm.prank(address(0xBAD));
+        vm.expectRevert("owner");
+        rc.withdraw(payable(address(0xBAD)), 1);
+        vm.prank(address(0xBAD));
+        vm.expectRevert("owner");
+        vault.withdrawGasFunds(payable(address(0xBAD)), 1);
     }
 
     function testGasBillingCannotSpendTokenPrincipal() public {

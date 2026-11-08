@@ -52,6 +52,37 @@ contract Vault is AbstractCallback {
         _configure(beneficiary, warnAfter, releaseAfter, grace, false);
     }
 
+    /// Estimated warning and release times for the current epoch, assuming no further activity.
+    /// Destination-side view: it follows delivered heartbeats only, and release needs the warning to be
+    /// delivered first, so before a warning the release estimate counts grace from max(warnAt, now).
+    /// Zero while the policy is inactive.
+    function deadlines() public view returns (uint256 warnAt, uint256 releaseAt) {
+        if (!active || released) return (0, 0);
+        warnAt = resetAt + warnAfter;
+        uint256 warnedOrNext = warnedAt != 0 ? warnedAt : (warnAt > block.timestamp ? warnAt : block.timestamp);
+        releaseAt = resetAt + releaseAfter;
+        if (warnedOrNext + grace > releaseAt) releaseAt = warnedOrNext + grace;
+    }
+
+    function status()
+        external
+        view
+        returns (
+            bool active_,
+            bool released_,
+            uint256 epoch_,
+            uint256 lastHeartbeat,
+            uint256 warnedAt_,
+            uint256 warnAt,
+            uint256 releaseAt,
+            address beneficiary_,
+            uint256 balance
+        )
+    {
+        (warnAt, releaseAt) = deadlines();
+        return (active, released, epoch, resetAt, warnedAt, warnAt, releaseAt, beneficiary, token.balanceOf(address(this)));
+    }
+
     function publishConfiguration() external {
         emit Configuration(epoch, warnAfter, releaseAfter, grace, active);
     }
@@ -102,6 +133,12 @@ contract Vault is AbstractCallback {
         uint256 amount = token.balanceOf(address(this));
         require(token.transfer(beneficiary, amount), "transfer");
         emit Released(e, beneficiary, amount);
+    }
+
+    /// Returns unused native callback funds once the policy is inactive; the token principal is not touched.
+    function withdrawGasFunds(address payable to, uint256 amount) external onlyOwner {
+        require((!active || released) && to != address(0), "active");
+        _pay(to, amount);
     }
 
     function recoverCancelled() external onlyOwner {

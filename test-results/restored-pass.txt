@@ -1,18 +1,37 @@
-Compiling 1 files with Solc 0.8.30
-Solc 0.8.30 finished in 503.50ms
-Compiler run successful!
+No files changed, compilation skipped
 
-Ran 9 tests for test/Heartbeat.t.sol:HeartbeatTest
-[PASS] testCancelAndReconfigureInvalidateQueuedCallbacks() (gas: 384134)
-[PASS] testFuzzUnauthorizedCannotRelease(address) (runs: 256, μ: 33941, ~: 33941)
-[PASS] testGasBillingCannotSpendTokenPrincipal() (gas: 43172)
-[PASS] testGraceReleaseAndIdempotency() (gas: 253965)
-[PASS] testHeartbeatInvalidatesWarningAndStaleDelivery() (gas: 215659)
-[PASS] testRejectsDirectCallbackAndWrongReactiveId() (gas: 83932)
-[PASS] testReleaseAcknowledgementUnsubscribesCron() (gas: 101834)
-[PASS] testTimestampThresholdsAcrossThreeChainsAndDedup() (gas: 925427)
-[PASS] testWrongOriginIgnoredAndCronCanStop() (gas: 127089)
-Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 15.96ms (20.95ms CPU time)
+Ran 16 tests for test/Heartbeat.t.sol:HeartbeatTest
+[PASS] testCancelAndReconfigureInvalidateQueuedCallbacks() (gas: 399388)
+[PASS] testCancelStopsCronAndReconfigureRestartsIt() (gas: 646126)
+[PASS] testFuzzUnauthorizedCannotRelease(address) (runs: 256, μ: 34095, ~: 34095)
+[PASS] testGasBillingCannotSpendTokenPrincipal() (gas: 43374)
+[PASS] testGraceReleaseAndIdempotency() (gas: 254493)
+[PASS] testHeartbeatInvalidatesWarningAndStaleDelivery() (gas: 216055)
+[PASS] testOwnerCanWithdrawUnusedFundsOnly() (gas: 365961)
+[PASS] testRejectsDirectCallbackAndWrongReactiveId() (gas: 84152)
+[PASS] testReleaseAcknowledgementUnsubscribesCron() (gas: 143110)
+[PASS] testStatusAndDeadlines() (gas: 171937)
+[PASS] testTimestampThresholdsAcrossThreeChainsAndDedup() (gas: 1027270)
+[PASS] testTokenConfigValidation() (gas: 8160)
+[PASS] testTrackedTokenTransferFromOwnerCountsAsActivity() (gas: 342630)
+[PASS] testTwoOrigins() (gas: 26367)
+[PASS] testUntrackedOrIncomingTransfersAreIgnored() (gas: 177208)
+[PASS] testWrongOriginIgnoredAndCronCanStop() (gas: 125247)
+Suite result: ok. 16 passed; 0 failed; 0 skipped; finished in 242.50ms (57.68ms CPU time)
+
+Ran 11 tests for test/Review.t.sol:ReviewTest
+[PASS] testC1_HeartbeatCallbacksThrottledExceptAfterWarning() (gas: 2777143)
+[PASS] testC1_NonZeroTransferFromNeedsAllowanceAndApprovedSpenderCounts() (gas: 1210822)
+[PASS] testC1_StrangerZeroValueTransferFromIsNotActivity() (gas: 35797281)
+[PASS] testL1_PublishConfigurationResyncsLostReleasedAck() (gas: 1840374)
+[PASS] testL1_ReleasedAckUnsubscribesEverything() (gas: 1033793)
+[PASS] testL2_UndeliveredHeartbeatDoesNotShowOverdueRelease() (gas: 1183669)
+[PASS] testL2_WarnHasNoDestinationTimeGate() (gas: 912254)
+[PASS] testM1_LongGraceSendsNoRevertingReleases() (gas: 27411262)
+[PASS] testM1_LostWarningRecoversWithoutEarlyRelease() (gas: 1844930)
+[PASS] testOK_ConfigReorderDuplicateAndDedupKeyAcrossEpochs() (gas: 1644657)
+[PASS] testResidual_LostWarningWithLongGraceRespamsForAWholeGrace() (gas: 173812690)
+Suite result: ok. 11 passed; 0 failed; 0 skipped; finished in 240.77ms (342.14ms CPU time)
 
 Ran 1 test for test/Heartbeat.t.sol:HeartbeatInvariantTest
 [PASS] invariant_PrincipalCannotLeaveBeforeGrace() (runs: 128, calls: 8192, reverts: 0)
@@ -23,6 +42,6 @@ Ran 1 test for test/Heartbeat.t.sol:HeartbeatInvariantTest
 | EarlyReleaseHandler | premature | 8192  | 0       | 0        |
 ╰---------------------+-----------+-------+---------+----------╯
 
-Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 1.22s (1.22s CPU time)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 2.14s (2.14s CPU time)
 
-Ran 2 test suites in 1.22s (1.24s CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)
+Ran 3 test suites in 2.17s (2.62s CPU time): 28 tests passed, 0 failed, 0 skipped (28 total tests)
