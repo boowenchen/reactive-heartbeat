@@ -9,7 +9,7 @@ fixed test-token calls → asset accounting; public RPC responses → benchmark 
 Ownership, origin contract/chain/topic filters, policy epochs or pool sequence numbers,
 callback replay, input caps, atomic rollback and fee/principal separation were reviewed.
 Bounded subscriptions avoid unbounded constructor loops. Contracts compile under
-the EVM size limits. No private keys, account creation or transaction submission occurred.
+the EVM size limits. This review was written before deployment; it involved no private keys, account creation or transaction submission.
 
 Resolved during implementation: one-shot test impersonation consumed by getters;
 stack depth in scripts (via-IR); stale library/API example mismatch; dependency ws
@@ -23,8 +23,8 @@ pool transfer callbacks are protected by a lock and the supported tokens have no
 External-token/reentrant-token behavior is outside the declared fixture scope.
 No lint suppression was used to claim a clean security audit.
 
-Remaining gates: real subscriptions and authenticated signer delivery, actual fee
-budgets, testnet transaction evidence, benchmark success rate and timing, final chart
-visual inspection, upstream dependency licensing, and reviewer acceptance. Retryable
+Gates closed after this review (evidence in README.md): real subscriptions and
+authenticated signer delivery, actual fee budgets and testnet transaction evidence.
+Still open: upstream dependency licensing (see SOURCES.md) and independent review. Retryable
 destination actions still depend on funded network execution. Remote activity cannot
 veto a destination transaction that is already executing.

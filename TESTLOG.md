@@ -1,6 +1,6 @@
 # Test log
 
-Local EVM tests, not testnet acceptance. Foundry 1.8.6; Solidity 0.8.30.
+Local EVM tests, not testnet acceptance. The local suite configures three origin chains (including Unichain Sepolia) to test multi-origin deduplication; the live testnet deployment used two (Base Sepolia and Ethereum Sepolia). Foundry 1.8.6; Solidity 0.8.30.
 Run: `forge test -vv`. Stateful invariants: 128 runs x 64 calls; fuzz: 256 cases.
 
 Mutation executed by `tools/mutation_check.py` in the build workspace:

@@ -1,6 +1,8 @@
-# Deployment runbook — not executed
+# Deployment runbook
 
-All commands below are for a later funded testnet session. No account or wallet is
+**Status: executed on testnet on 2026-11-07.** This runbook was written before deployment and is kept as the procedure. Actual addresses, transactions and results are in [README.md](README.md).
+
+All commands below were prepared for a funded testnet session. No account or wallet is
 created by this project. Use a dedicated project wallet; export `PRIVATE_KEY` in the
 process environment through your secret manager. Never paste it into command arguments,
 logs, this README, or version control. `OWNER` must match that key.

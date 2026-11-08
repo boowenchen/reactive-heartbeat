@@ -1,18 +1,13 @@
-# Heartbeat — storyboard (2:45 maximum)
+# Heartbeat — demo video script (as recorded, 1:59)
 
-Record only after the real testnet loop has been verified. Use the minute-scale demo
-parameters from DEPLOY. Accelerate waiting footage and label the time-lapse; do not
-edit simulated activity into a live transaction sequence.
+Narration is English text-to-speech with burned-in captions. Every on-chain shot is a live explorer page (Blockscout / Reactscan) for a real testnet transaction listed in README.md; cards are rendered from the repository's own evidence and test output. No simulated activity is shown as a transaction.
 
-| Time | Shot | English narration |
+| Time | Shot | Narration |
 |---|---|---|
-| 0:00–0:20 | Title and three-chain diagram | “Your assets may live on one chain while your activity happens on three. Heartbeat combines explicit activity signals into one configurable inheritance policy.” |
-| 0:20–0:45 | Read owner, beneficiary and threshold getters; show funded token balance | “This vault holds demo tokens. Its owner chooses the beneficiary, warning threshold, release threshold and grace period. Native gas funding is separate from the principal.” |
-| 0:45–1:15 | Send ping on each chain; open actual origin, reactive and callback receipts | “A ping on Base, Unichain or Ethereum Sepolia reaches this Reactive contract on Lasna. The authenticated callback resets the vault's warning state. No application keeper is running.” |
-| 1:15–1:40 | Labeled time-lapse; Warning event and timestamp | “Now the owner goes quiet. Network cron events check elapsed time. A warning starts a grace period on the destination chain.” |
-| 1:40–2:10 | Release receipt and beneficiary balance change | “After the thresholds and grace period, the callback transfers the demo tokens. Repeated delivery cannot release twice. The release acknowledgement stops cron.” |
-| 2:10–2:30 | Separate unreleased fixture: cancel/configure; rejected stale callback test | “Until release, the owner can cancel or change policy. Every change advances an epoch, making old queued callbacks harmless.” |
-| 2:30–2:45 | README evidence rows and test log | “This is an asynchronous inactivity policy, not proof of death. The code, tests and transaction trail show precisely what it does.” |
-
-Narration: about 220 words. Never read an invented transaction hash. If the live
-demo is unavailable, present this as an implementation preview, not a completed loop.
+| 0:00–0:16 | Heartbeat · architecture | “Your assets may sit on one chain while your activity happens on others. Heartbeat turns explicit activity signals from Base Sepolia and Ethereum Sepolia into one inheritance policy, executed on-chain by a Reactive contract on Lasna.” |
+| 0:16–0:37 | Deployed contracts and policy | “This testnet vault holds one hundred demo HBA tokens. The owner sets a beneficiary, a warning after one hundred and twenty seconds of silence, release after two hundred and forty seconds, and a forty-five second grace period. Callback gas is funded separately, so it can never spend the principal.” |
+| 0:37–0:58 | Base Sepolia · ping() — origin transaction; Lasna · Reactive contract reacts to the ping; Base Sepolia · authenticated callback to the vault; Ethereum Sepolia · second ping — origin transaction | “The owner calls ping on Base Sepolia. Reactive Network delivers that event to the contract on Lasna, which sends an authenticated callback to the vault and resets its clock. A second ping comes from Ethereum Sepolia, and a third from Base again. Every step is a real testnet transaction, and no application keeper is running.” |
+| 0:58–1:11 | Timeline from on-chain block timestamps; Lasna · cron check requests the warning callback; Base Sepolia · warning callback delivered to the vault | “Then the owner goes quiet. Cron events on Lasna keep checking the elapsed time. About two minutes after the last heartbeat, a callback emits a Warning on the vault and starts the grace period.” |
+| 1:11–1:32 | Base Sepolia · release: 100 HBA to the beneficiary; Lasna · release acknowledged, cron unsubscribed | “About four minutes after the last heartbeat, with the grace period over, the next callback transfers all one hundred demo tokens to the beneficiary. Release is terminal: a repeated delivery cannot pay twice. The release is then acknowledged on Lasna, and the Reactive contract switches off its cron subscription.” |
+| 1:32–1:49 | Local tests and a deliberate mutation | “Until release, the owner can cancel or change the policy. Each change advances an epoch, so callbacks queued under an old policy are ignored. The Foundry suite covers this, and when we deliberately remove the release time guard, the invariant test fails.” |
+| 1:49–1:59 | README · github.com/boowenchen/reactive-heartbeat | “Heartbeat is an asynchronous inactivity policy, not proof of death. The code, the tests and the full transaction trail are public on GitHub.” |

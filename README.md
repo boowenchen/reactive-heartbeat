@@ -74,7 +74,7 @@ Native funds: 0.9 lREACT allocated to this Reactive contract in total; 0.3294136
 
 ## Build and verification
 
-Lasna release acknowledgement (automatic cron unsubscribe): [0x21aee27181ff8cbfbe097f5a73014ebfb11e8d386fb67f6307be725a48ccc1d4](https://lasna.reactscan.net/tx/0x21aee27181ff8cbfbe097f5a73014ebfb11e8d386fb67f6307be725a48ccc1d4). Its source transaction is the Released callback above; raw input and receipt are saved in `../evidence/heartbeat-release-ack.json`.
+Lasna release acknowledgement (automatic cron unsubscribe): [0x21aee27181ff8cbfbe097f5a73014ebfb11e8d386fb67f6307be725a48ccc1d4](https://lasna.reactscan.net/tx/0x21aee27181ff8cbfbe097f5a73014ebfb11e8d386fb67f6307be725a48ccc1d4). Its source transaction is the Released callback above; raw input and receipt are saved in [evidence/heartbeat-release-ack.json](evidence/heartbeat-release-ack.json).
 
 ```sh
 python tools/bootstrap.py

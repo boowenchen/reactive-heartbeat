@@ -65,8 +65,8 @@
       "callbackApplicationEvent": "0x3bfce8de0db7450cc169b94323c210e69a36c6a4a58c9f5d96bec4973adce392"
     }
   ],
-  "stateEvidence": "../../evidence/heartbeat-loop.json",
-  "rawEvidence": "../../evidence/heartbeat-collected.json",
+  "stateEvidence": "../evidence/heartbeat-loop.json",
+  "rawEvidence": "../evidence/heartbeat-collected.json",
   "principal": "100 HBA",
   "beneficiary": "0xa49e54E36f6B8130d0DF4105f3e594E2c80bBB86",
   "releaseAckTx": "0x21aee27181ff8cbfbe097f5a73014ebfb11e8d386fb67f6307be725a48ccc1d4"
